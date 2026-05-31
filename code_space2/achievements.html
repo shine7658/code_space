@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綠軌跡 - 環保成就看板</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            background-color: #fafbfc; 
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #164e63 0%, #2e6f40 100%);
+            border-radius: 24px; 
+            color: white; 
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .badge-card {
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            padding: 40px 24px !important;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .badge-card.locked {
+            opacity: 0.5;
+            filter: grayscale(100%);
+            background-color: #f8fafc;
+            border: 2px dashed #cbd5e1;
+        }
+        .badge-card.locked::after {
+            content: '🔒';
+            position: absolute; 
+            top: 18px;
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+        
+        .badge-card.unlocked {
+            border-color: #cbd5c5;
+            transform: scale(1);
+            background: #ffffff;
+        }
+        .badge-card.unlocked:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+        
+        .badge-card.unlocked#badge-diet-1, .badge-card.unlocked#badge-diet-2, .badge-card.unlocked#badge-diet-3 {
+            animation: dietGlow 2.5s infinite alternate;
+        }
+        .badge-card.unlocked#badge-traffic-1, .badge-card.unlocked#badge-traffic-2, .badge-card.unlocked#badge-traffic-3 {
+            animation: trafficGlow 2.5s infinite alternate;
+        }
+        .badge-card.unlocked#badge-energy-1, .badge-card.unlocked#badge-energy-2, .badge-card.unlocked#badge-energy-3 {
+            animation: energyGlow 2.5s infinite alternate;
+        }
+
+        @keyframes dietGlow {
+            0% { box-shadow: 0 4px 20px rgba(17, 94, 89, 0.02); border-color: #cbd5c5; }
+            100% { box-shadow: 0 12px 30px rgba(204, 251, 241, 0.8); border-color: #0d9488; }
+        }
+        @keyframes trafficGlow {
+            0% { box-shadow: 0 4px 20px rgba(3, 105, 161, 0.02); border-color: #cbd5c5; }
+            100% { box-shadow: 0 12px 30px rgba(224, 242, 254, 0.8); border-color: #0284c7; }
+        }
+        @keyframes energyGlow {
+            0% { box-shadow: 0 4px 20px rgba(146, 64, 14, 0.02); border-color: #cbd5c5; }
+            100% { box-shadow: 0 12px 30px rgba(254, 243, 199, 0.8); border-color: #d97706; }
+        }
+        
+        .badge-icon-wrapper {
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.03), inset 0 -4px 0 rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .badge-card.unlocked:hover .badge-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .lock-status {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 16px;
+            border-radius: 12px;
+            background-color: #f1f5f9;
+            color: #64748b;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .lock-status.text-success {
+            background-color: #f4f7f4;
+            color: #2e6f40 !important;
+            border: 1px solid #cbd5c5;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-transparent py-4 position-relative">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand fw-bold text-green m-0 fs-3" href="index.html">
+                <i class="bi bi-tree-fill me-2"></i>綠軌跡
+            </a>
+            <button class="btn btn-dark fw-bold btn-lg px-4 py-2 fs-4" style="border-radius: 12px; position: absolute; top: 20px; right: 40px; padding: 12px 28px !important; z-index: 999;" id="menu-open-btn">
+                <i class="bi bi-list me-2 fs-4"></i>選單
+            </button>
+        </div>
+    </nav>
+
+    <div id="full-screen-menu" class="fullscreen-overlay" style="position: fixed;">
+        <div class="menu-content">
+            <div class="menu-links">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-number">01</span>
+                    <i class="bi bi-check2-circle me-3"></i>每日打卡首頁
+                </a>
+                <a href="achievements.html" class="menu-item active">
+                    <span class="menu-number">02</span>
+                    <i class="bi bi-trophy me-3"></i>環保成就看板
+                </a>
+                <a href="history.html" class="menu-item">
+                    <span class="menu-number">03</span>
+                    <i class="bi bi-bar-chart-line me-3"></i>環保足跡歷史
+                </a>
+                <a href="summary.html" class="menu-item">
+                    <span class="menu-number">04</span>
+                    <i class="bi bi-file-earmark-person me-3"></i>永續生活報表
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5" style="max-width: 1050px;">
+        <div class="hero-section text-center mb-5 shadow-sm">
+            <h2 class="fw-bold mb-3 text-center display-6"><i class="bi bi-trophy-fill text-warning me-2"></i>環保榮譽與成就看板</h2>
+            <p class="text-white-50 mb-0 fw-medium text-center fs-5" style="max-width: 700px;">挑戰生活中的綠色指標，解鎖專屬永續勳章，紀錄你對地球的每一份貢獻。</p>
+        </div>
+
+        <h4 class="fw-bold text-green mb-4 fs-4 text-center"><i class="bi bi-grid-3x3-gap-fill me-2"></i>永續核心勳章牆</h4>
+        
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-diet-1" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-diet">🥤</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">減塑新兵</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項飲食環保任務</small>
+                    <span id="status-diet-1" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-diet-2" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #ccfbf1;">🥗</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">無肉戰士</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項飲食環保任務</small>
+                    <span id="status-diet-2" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-diet-3" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #99f6e4;">🏆</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">綠色食神</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項飲食環保任務</small>
+                    <span id="status-diet-3" class="lock-status">未獲得</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-traffic-1" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-traffic">🚲</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">單車騎士</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項交通環保任務</small>
+                    <span id="status-traffic-1" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-traffic-2" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #e0f2fe;">🚌</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">通勤達人</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項交通環保任務</small>
+                    <span id="status-traffic-2" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-traffic-3" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #bae6fd;">🚀</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">低碳領航者</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項交通環保任務</small>
+                    <span id="status-traffic-3" class="lock-status">未獲得</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-energy-1" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-energy">💡</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">省電初心</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項節能環保任務</small>
+                    <span id="status-energy-1" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-energy-2" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fef3c7;">🔌</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">拔插頭大師</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項節能環保任務</small>
+                    <span id="status-energy-2" class="lock-status">未獲得</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div id="badge-energy-3" class="badge-card locked p-4 text-center h-100">
+                    <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fde68a;">⚡</div>
+                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">永續光能使者</h5>
+                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項節能環保任務</small>
+                    <span id="status-energy-3" class="lock-status">未獲得</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const menuOverlay = document.getElementById('full-screen-menu');
+        const menuOpenBtn = document.getElementById('menu-open-btn');
+
+        menuOpenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuOverlay.classList.add('open');
+        });
+
+        menuOverlay.addEventListener('click', (event) => {
+            if (!event.target.closest('.menu-links')) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+
+        function checkNightMode() {
+            const currentHour = new Date().getHours();
+            if (currentHour >= 23 || currentHour < 5) {
+                document.body.classList.add('eco-dark-mode');
+            } else {
+                document.body.classList.remove('eco-dark-mode');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkNightMode();
+            const savedState = JSON.parse(localStorage.getItem('ecoStepState'));
+            
+            if (savedState && savedState.tasks) {
+                const completedTasks = savedState.tasks.filter(t => t.completed);
+                let dietCount = 0; let trafficCount = 0; let energyCount = 0;
+
+                completedTasks.forEach(task => {
+                    if (task.category === "飲食") dietCount++;
+                    if (task.category === "交通") trafficCount++;
+                    if (task.category === "節能") energyCount++;
+                });
+
+                const unlockBadge = (elementId, statusId) => {
+                    const el = document.getElementById(elementId);
+                    const statusEl = document.getElementById(statusId);
+                    if (el) { el.classList.remove('locked'); el.classList.add('unlocked'); }
+                    if (statusEl) {
+                        statusEl.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i>已解鎖';
+                        statusEl.className = "lock-status text-success";
+                    }
+                };
+
+                if (dietCount >= 1) unlockBadge('badge-diet-1', 'status-diet-1');
+                if (dietCount >= 2) unlockBadge('badge-diet-2', 'status-diet-2');
+                if (dietCount >= 3) unlockBadge('badge-diet-3', 'status-diet-3');
+                if (trafficCount >= 1) unlockBadge('badge-traffic-1', 'status-traffic-1');
+                if (trafficCount >= 2) unlockBadge('badge-traffic-2', 'status-traffic-2');
+                if (trafficCount >= 3) unlockBadge('badge-traffic-3', 'status-traffic-3');
+                if (energyCount >= 1) unlockBadge('badge-energy-1', 'status-energy-1');
+                if (energyCount >= 2) unlockBadge('badge-energy-2', 'status-energy-2');
+                if (energyCount >= 3) unlockBadge('badge-energy-3', 'status-energy-3');
+            }
+        });
+    </script>
+</body>
+</html>

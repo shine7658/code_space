@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綠軌跡 - 永續生活報表</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #fafbfc; }
+        .hero-section {
+            background: linear-gradient(135deg, #064e3b 0%, #2e6f40 100%);
+            border-radius: 24px; color: white; padding: 60px 40px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .report-card {
+            border-radius: 30px; border: none;
+            background: #ffffff; box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            padding: 40px; text-align: center; transition: 0.3s;
+        }
+        .identity-badge {
+            font-size: 5rem; margin-bottom: 20px; display: block;
+        }
+        .identity-title {
+            font-size: 2.2rem; font-weight: 800; color: #2e6f40; margin-bottom: 10px;
+        }
+        .comparison-box {
+            background-color: #f4f7f4; border-radius: 20px; padding: 25px; margin-top: 30px;
+        }
+        body.eco-dark-mode .report-card { background-color: #1e293b; color: white; }
+        body.eco-dark-mode .identity-title { color: #38bdf8; }
+        body.eco-dark-mode .comparison-box { background-color: #111827; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-transparent py-4 position-relative">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand fw-bold text-green m-0 fs-3" href="index.html">
+                <i class="bi bi-tree-fill me-2"></i>綠軌跡
+            </a>
+            <button class="btn btn-dark fw-bold btn-md px-4 py-2 fs-4" style="border-radius: 12px; position: absolute; top: 20px; right: 40px; padding: 12px 28px !important; z-index: 999;" id="menu-open-btn">
+                <i class="bi bi-list me-2 fs-4"></i>選單
+            </button>
+        </div>
+    </nav>
+
+    <div id="full-screen-menu" class="fullscreen-overlay" style="position: fixed;">
+        <div class="menu-content">
+            <div class="menu-links">
+                <a href="index.html" class="menu-item"><span class="menu-number">01</span><i class="bi bi-check2-circle me-3"></i>每日打卡首頁</a>
+                <a href="achievements.html" class="menu-item"><span class="menu-number">02</span><i class="bi bi-trophy me-3"></i>環保成就看板</a>
+                <a href="history.html" class="menu-item"><span class="menu-number">03</span><i class="bi bi-bar-chart-line me-3"></i>環保足跡歷史</a>
+                <a href="summary.html" class="menu-item active"><span class="menu-number">04</span><i class="bi bi-file-earmark-person me-3"></i>永續生活報表</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5" style="max-width: 900px;">
+        <div class="hero-section text-center mb-5 shadow-sm">
+            <h2 class="fw-bold mb-3 display-6">我的綠色影響力總結</h2>
+            <p class="text-white-50 mb-0 fw-medium fs-5">數據顯示，你對地球的愛已經轉化為實質的貢獻。</p>
+        </div>
+
+        <div class="report-card mb-5">
+            <span id="id-emoji" class="identity-badge">🌱</span>
+            <div id="id-title" class="identity-title">正在分析數據...</div>
+            <p id="id-desc" class="fs-5 text-muted">根據你過去的行為紀錄，系統正在計算你的綠色生活人格。</p>
+
+            <div class="row g-4 mt-2">
+                <div class="col-md-6">
+                    <div class="comparison-box">
+                        <i class="bi bi-lightning-charge text-warning fs-1 mb-2"></i>
+                        <h4 class="fw-bold fs-4">節省電力相當於</h4>
+                        <p id="calc-bulb" class="display-6 fw-bold text-dark mt-2">0 小時</p>
+                        <small class="text-muted">可供應 10W LED 燈泡照明</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="comparison-box">
+                        <i class="bi bi-cup-hot text-primary fs-1 mb-2"></i>
+                        <h4 class="fw-bold fs-4">減碳量相當於</h4>
+                        <p id="calc-coffee" class="display-6 fw-bold text-dark mt-2">0 杯</p>
+                        <small class="text-muted">免洗紙杯製造產生的碳排</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuOverlay = document.getElementById('full-screen-menu');
+        const menuOpenBtn = document.getElementById('menu-open-btn');
+
+        menuOpenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuOverlay.classList.add('open');
+        });
+
+        menuOverlay.addEventListener('click', (event) => {
+            if (!event.target.closest('.menu-links')) {
+                menuOverlay.classList.remove('open');
+            }
+        });
+
+        function checkNightMode() {
+            const h = new Date().getHours();
+            if (h >= 23 || h < 5) document.body.classList.add('eco-dark-mode');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkNightMode();
+            const state = JSON.parse(localStorage.getItem('ecoStepState'));
+            if (!state) return;
+
+            const score = state.score;
+            const carbon = (score * 0.12).toFixed(1);
+            
+            document.getElementById('calc-bulb').innerText = `${Math.round(carbon * 15)} 小時`;
+            document.getElementById('calc-coffee').innerText = `${Math.round(carbon * 4)} 杯`;
+
+            const tasks = state.tasks.filter(t => t.completed);
+            const catCounts = { "飲食": 0, "交通": 0, "節能": 0 };
+            tasks.forEach(t => catCounts[t.category]++);
+
+            let mainCat = Object.keys(catCounts).reduce((a, b) => catCounts[a] > catCounts[b] ? a : b);
+            
+            const emojiEl = document.getElementById('id-emoji');
+            const titleEl = document.getElementById('id-title');
+            const descEl = document.getElementById('id-desc');
+
+            if (tasks.length === 0) {
+                titleEl.innerText = "綠色新朋友";
+                descEl.innerText = "你還沒有任何打卡紀錄喔！快去首頁開啟你的第一步吧。";
+            } else if (mainCat === "飲食") {
+                emojiEl.innerText = "🍱";
+                titleEl.innerText = "減塑生活食神";
+                descEl.innerText = "你是位不折不扣的綠色饕客，對減少一次性餐具的堅持，讓海洋生物都想感謝你！";
+            } else if (mainCat === "交通") {
+                emojiEl.innerText = "🚌";
+                titleEl.innerText = "低碳風速行者";
+                descEl.innerText = "比起開車，你更愛與大眾運輸為伍。每一趟捷運與單車之旅，都在減少城市的廢氣。";
+            } else {
+                emojiEl.innerText = "💡";
+                titleEl.innerText = "極致省電大師";
+                descEl.innerText = "隨手關燈是你的本能，拔除插頭是你的日常。你是系統公認的能源守護者！";
+            }
+        });
+    </script>
+</body>
+</html>
