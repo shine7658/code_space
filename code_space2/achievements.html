@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>綠軌跡 - 環保成就看板</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -24,10 +24,10 @@
         }
         
         .badge-card {
-            border-radius: 24px;
+            border-radius: 20px;
             border: 1px solid #e2e8f0;
             background-color: #ffffff;
-            padding: 40px 24px !important;
+            padding: 30px 15px !important; /* 微調內距，讓手機版也能完美塞下兩個 */
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
@@ -46,7 +46,7 @@
         .badge-card.locked::after {
             content: '🔒';
             position: absolute; 
-            top: 18px;
+            top: 15px;
             font-size: 1.1rem;
             opacity: 0.7;
         }
@@ -84,10 +84,10 @@
         }
         
         .badge-icon-wrapper {
-            width: 90px; height: 90px;
+            width: 75px; height: 75px;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 3rem; margin-bottom: 20px;
+            font-size: 2.2rem; margin-bottom: 15px;
             border: 1px solid rgba(0,0,0,0.03);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.03), inset 0 -4px 0 rgba(0,0,0,0.06);
             transition: transform 0.3s ease;
@@ -97,10 +97,10 @@
         }
         
         .lock-status {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.5px;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 12px;
             background-color: #f1f5f9;
             color: #64748b;
@@ -150,87 +150,89 @@
         </div>
     </div>
 
-    <div class="container mb-5" style="max-width: 1050px;">
-        <div class="hero-section text-center mb-5 shadow-sm">
+    <div class="container mt-2 mb-5">
+        <div class="hero-section text-center mb-4 shadow-sm">
             <h2 class="fw-bold mb-3 text-center display-6"><i class="bi bi-trophy-fill text-warning me-2"></i>環保榮譽與成就看板</h2>
             <p class="text-white-50 mb-0 fw-medium text-center fs-5" style="max-width: 700px;">挑戰生活中的綠色指標，解鎖專屬永續勳章，紀錄你對地球的每一份貢獻。</p>
         </div>
 
-        <h4 class="fw-bold text-green mb-4 fs-4 text-center"><i class="bi bi-grid-3x3-gap-fill me-2"></i>永續核心勳章牆</h4>
-        
-        <div class="row g-4">
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-diet-1" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-diet">🥤</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">減塑新兵</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項飲食環保任務</small>
-                    <span id="status-diet-1" class="lock-status">未獲得</span>
+        <div class="card p-4 bg-white border border-success border-opacity-10">
+            <h4 class="fw-bold text-green mb-4 fs-4 text-center"><i class="bi bi-grid-3x3-gap-fill me-2"></i>永續核心勳章牆</h4>
+            
+            <div class="row g-4">
+                <div class="col-6 col-lg-4">
+                    <div id="badge-diet-1" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-diet">🥤</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">減塑新兵</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項飲食任務</small>
+                        <span id="status-diet-1" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-diet-2" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #ccfbf1;">🥗</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">無肉戰士</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項飲食環保任務</small>
-                    <span id="status-diet-2" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-diet-2" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #ccfbf1;">🥗</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">無肉戰士</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項飲食任務</small>
+                        <span id="status-diet-2" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-diet-3" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #99f6e4;">🏆</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">綠色食神</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項飲食環保任務</small>
-                    <span id="status-diet-3" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-diet-3" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-diet" style="background-color: #99f6e4;">🏆</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">綠色食神</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項飲食任務</small>
+                        <span id="status-diet-3" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-traffic-1" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-traffic">🚲</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">單車騎士</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項交通環保任務</small>
-                    <span id="status-traffic-1" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-traffic-1" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-traffic">🚲</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">單車騎士</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項交通任務</small>
+                        <span id="status-traffic-1" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-traffic-2" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #e0f2fe;">🚌</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">通勤達人</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項交通環保任務</small>
-                    <span id="status-traffic-2" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-traffic-2" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #e0f2fe;">🚌</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">通勤達人</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項交通任務</small>
+                        <span id="status-traffic-2" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-traffic-3" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #bae6fd;">🚀</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">低碳領航者</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項交通環保任務</small>
-                    <span id="status-traffic-3" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-traffic-3" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-traffic" style="background-color: #bae6fd;">🚀</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">低碳領航者</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項交通任務</small>
+                        <span id="status-traffic-3" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-energy-1" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-energy">💡</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">省電初心</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項節能環保任務</small>
-                    <span id="status-energy-1" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-energy-1" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-energy">💡</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">省電初心</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 1 項節能任務</small>
+                        <span id="status-energy-1" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-energy-2" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fef3c7;">🔌</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">拔插頭大師</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項節能環保任務</small>
-                    <span id="status-energy-2" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-energy-2" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fef3c7;">🔌</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">拔插頭大師</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 2 項節能任務</small>
+                        <span id="status-energy-2" class="lock-status">未獲得</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div id="badge-energy-3" class="badge-card locked p-4 text-center h-100">
-                    <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fde68a;">⚡</div>
-                    <h5 class="fw-bold mb-1 text-dark text-center fs-5">永續光能使者</h5>
-                    <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項節能環保任務</small>
-                    <span id="status-energy-3" class="lock-status">未獲得</span>
+                <div class="col-6 col-lg-4">
+                    <div id="badge-energy-3" class="badge-card locked text-center h-100">
+                        <div class="badge-icon-wrapper mx-auto tag-energy" style="background-color: #fde68a;">⚡</div>
+                        <h5 class="fw-bold mb-1 text-dark text-center fs-5">永續光能使者</h5>
+                        <small class="text-muted d-block fs-6 mb-2 text-center">完成 3 項節能任務</small>
+                        <span id="status-energy-3" class="lock-status">未獲得</span>
+                    </div>
                 </div>
             </div>
         </div>

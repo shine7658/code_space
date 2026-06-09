@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>綠軌跡 - 環保足跡歷史</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -112,7 +112,7 @@
             <a class="navbar-brand fw-bold text-green m-0 fs-3" href="index.html">
                 <i class="bi bi-tree-fill me-2"></i>綠軌跡
             </a>
-            <button class="btn btn-dark fw-bold btn-md px-4 py-2 fs-4" style="border-radius: 10px; position: absolute; top: 20px; right: 40px; padding: 12px 28px !important; z-index: 999;" id="menu-open-btn">
+            <button class="btn btn-dark fw-bold btn-lg px-4 py-2 fs-4" style="border-radius: 12px; position: absolute; top: 20px; right: 40px; padding: 12px 28px !important; z-index: 999;" id="menu-open-btn">
                 <i class="bi bi-list me-2 fs-4"></i>選單
             </button>
         </div>
@@ -141,75 +141,75 @@
         </div>
     </div>
 
-    <div class="container mb-5" style="max-width: 1100px;">
-        <div class="hero-section text-center mb-5 shadow-sm">
+    <div class="container mt-2 mb-5">
+        <div class="hero-section text-center mb-4 shadow-sm">
             <h2 class="fw-bold mb-3 text-center display-6"><i class="bi bi-bar-chart-line-fill text-warning me-2"></i>永續數據 Dashboard</h2>
             <p class="text-white-50 mb-0 fw-medium text-center fs-5" style="max-width: 650px;">透視你的綠色生活，將每日微行動轉化為視覺化減碳指標。</p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="card dashboard-card p-4 mb-4 border-0">
-                    <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-pie-chart-fill me-2"></i>行動領域分佈比例</h5>
-                    <div style="display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; padding: 10px 0;">
-                        
-                        <svg width="180" height="180" viewBox="0 0 42 42" class="pie-donut">
-                            <circle class="pie-hole" cx="21" cy="21" r="15.915" fill="#fff"></circle>
-                            <circle class="pie-ring" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f1f5f9" stroke-width="4.5"></circle>
+        <div class="card p-4 bg-white border border-success border-opacity-10">
+            <div class="row g-4">
+                
+                <div class="col-lg-6 col-12">
+                    <div class="card dashboard-card p-4 mb-4 border-0 bg-light bg-opacity-10">
+                        <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-pie-chart-fill me-2"></i>行動領域分佈比例</h5>
+                        <div style="display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; padding: 10px 0; flex-wrap: wrap; gap: 20px;">
                             
-                            <circle id="segment-diet" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#0d9488" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
-                            <circle id="segment-traffic" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#0284c7" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
-                            <circle id="segment-energy" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#d97706" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
-                        </svg>
-                        
-                        <div style="display: flex !important; flex-direction: column !important; gap: 14px !important; flex-grow: 1 !important; max-width: 260px !important; margin-left: 45px !important;">
-                            <div class="stat-label-box tag-diet">
-                                <span class="fw-bold">🌱 飲食減塑</span><span id="lbl-diet-pc" class="ms-3 fs-4 fw-bold">0%</span>
-                            </div>
-                            <div class="stat-label-box tag-traffic">
-                                <span class="fw-bold">🚌 低碳交通</span><span id="lbl-traffic-pc" class="ms-3 fs-4 fw-bold">0%</span>
-                            </div>
-                            <div class="stat-label-box tag-energy">
-                                <span class="fw-bold">💡 隨手節能</span><span id="lbl-energy-pc" class="ms-3 fs-4 fw-bold">0%</span>
+                            <svg width="180" height="180" viewBox="0 0 42 42" class="pie-donut mx-auto mx-md-0">
+                                <circle class="pie-hole" cx="21" cy="21" r="15.915" fill="#fff"></circle>
+                                <circle class="pie-ring" cx="21" cy="21" r="15.915" fill="transparent" stroke="#f1f5f9" stroke-width="4.5"></circle>
+                                <circle id="segment-diet" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#0d9488" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                                <circle id="segment-traffic" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#0284c7" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                                <circle id="segment-energy" class="pie-segment" cx="21" cy="21" r="15.915" fill="transparent" stroke="#d97706" stroke-width="4.5" stroke-dasharray="0 100" stroke-dashoffset="0"></circle>
+                            </svg>
+                            
+                            <div style="display: flex !important; flex-direction: column !important; gap: 14px !important; flex-grow: 1 !important; min-width: 200px !important;">
+                                <div class="stat-label-box tag-diet">
+                                    <span class="fw-bold">🌱 飲食減塑</span><span id="lbl-diet-pc" class="ms-3 fs-5 fw-bold">0%</span>
+                                </div>
+                                <div class="stat-label-box tag-traffic">
+                                    <span class="fw-bold">🚌 低碳交通</span><span id="lbl-traffic-pc" class="ms-3 fs-5 fw-bold">0%</span>
+                                </div>
+                                <div class="stat-label-box tag-energy">
+                                    <span class="fw-bold">💡 隨手節能</span><span id="lbl-energy-pc" class="ms-3 fs-5 fw-bold">0%</span>
+                                </div>
                             </div>
                         </div>
-                        
                     </div>
-                </div>
 
-                <div class="card dashboard-card p-4 border-0">
-                    <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-graph-up-arrow me-2"></i>近七日累計減碳趨勢 (kg)</h5>
-                    <div class="py-2">
-                        <svg id="trend-svg-canvas" class="chart-svg" viewBox="0 0 600 200">
-                            <line x1="0" y1="50" x2="600" y2="50" stroke="#f8fafc" stroke-width="1.5"></line>
-                            <line x1="0" y1="100" x2="600" y2="100" stroke="#f8fafc" stroke-width="1.5"></line>
-                            <line x1="0" y1="150" x2="600" y2="150" stroke="#f8fafc" stroke-width="1.5"></line>
-                            <line x1="0" y1="190" x2="600" y2="190" stroke="#e2e8f0" stroke-width="2"></line>
-                            
-                            <path id="trend-line" class="trend-path" d="M 50 190" fill="none" stroke="#2e6f40" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            
-                            <text x="35" y="215" fill="#64748b" font-size="14" font-weight="800">Mon</text>
-                            <text x="125" y="215" fill="#64748b" font-size="14" font-weight="800">Tue</text>
-                            <text x="215" y="215" fill="#64748b" font-size="14" font-weight="800">Wed</text>
-                            <text x="305" y="215" fill="#64748b" font-size="14" font-weight="800">Thu</text>
-                            <text x="395" y="215" fill="#64748b" font-size="14" font-weight="800">Fri</text>
-                            <text x="485" y="215" fill="#64748b" font-size="14" font-weight="800">Sat</text>
-                            <text x="555" y="215" fill="#64748b" font-size="14" font-weight="800">Sun</text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card dashboard-card p-4 h-100 border-0">
-                    <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-clock-history me-2"></i>已實踐的行動足跡</h5>
-                    <div id="history-timeline" class="timeline px-2">
-                        <div class="text-center py-5 text-muted" id="no-history-text">
-                            <i class="bi bi-inboxes fs-1 d-block mb-2 opacity-50"></i>
-                            目目前尚未勾選完成任何環保任務喔！
+                    <div class="card dashboard-card p-4 border-0 bg-light bg-opacity-10" style="overflow-x: auto;">
+                        <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-graph-up-arrow me-2"></i>近七日累計減碳趨勢 (kg)</h5>
+                        <div class="py-2" style="min-width: 400px;">
+                            <svg id="trend-svg-canvas" class="chart-svg" viewBox="0 0 600 200">
+                                <line x1="0" y1="50" x2="600" y2="50" stroke="#f8fafc" stroke-width="1.5"></line>
+                                <line x1="0" y1="100" x2="600" y2="100" stroke="#f8fafc" stroke-width="1.5"></line>
+                                <line x1="0" y1="150" x2="600" y2="150" stroke="#f8fafc" stroke-width="1.5"></line>
+                                <line x1="0" y1="190" x2="600" y2="190" stroke="#e2e8f0" stroke-width="2"></line>
+                                <path id="trend-line" class="trend-path" d="M 50 190" fill="none" stroke="#2e6f40" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <text x="35" y="215" fill="#64748b" font-size="14" font-weight="800">Mon</text>
+                                <text x="125" y="215" fill="#64748b" font-size="14" font-weight="800">Tue</text>
+                                <text x="215" y="215" fill="#64748b" font-size="14" font-weight="800">Wed</text>
+                                <text x="305" y="215" fill="#64748b" font-size="14" font-weight="800">Thu</text>
+                                <text x="395" y="215" fill="#64748b" font-size="14" font-weight="800">Fri</text>
+                                <text x="485" y="215" fill="#64748b" font-size="14" font-weight="800">Sat</text>
+                                <text x="555" y="215" fill="#64748b" font-size="14" font-weight="800">Sun</text>
+                            </svg>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="card dashboard-card p-4 h-100 border-0 bg-light bg-opacity-10">
+                        <h5 class="fw-bold text-green mb-4 fs-4"><i class="bi bi-clock-history me-2"></i>已實踐的行動足跡</h5>
+                        <div id="history-timeline" class="timeline px-2">
+                            <div class="text-center py-5 text-muted" id="no-history-text">
+                                <i class="bi bi-inboxes fs-1 d-block mb-2 opacity-50"></i>
+                                目前尚未勾選完成 any 環保任務喔！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
